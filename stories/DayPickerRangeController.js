@@ -41,7 +41,7 @@ const TestPrevIcon = () => (
       position: 'absolute',
       top: '20px',
     }}
-    tabindex="0"
+    tabIndex="0"
   >
     Prev
   </div>
@@ -58,7 +58,7 @@ const TestNextIcon = () => (
       right: '22px',
       top: '20px',
     }}
-    tabindex="0"
+    tabIndex="0"
   >
     Next
   </div>
@@ -356,7 +356,7 @@ storiesOf('DayPickerRangeController', module)
       onNextMonthClick={action('DayPickerRangeController::onNextMonthClick')}
       navPrev={<TestBottomPrevIcon />}
       navNext={<TestBottomNextIcon />}
-      customDayPickerNavigationStyles={{
+      dayPickerNavigationInlineStyles={{
         display: 'flex',
         justifyContent: 'space-between',
       }}
