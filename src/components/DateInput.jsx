@@ -200,6 +200,8 @@ class DateInput extends React.PureComponent {
 
     const inputHeight = getInputHeight(reactDates, small);
 
+    const withValue = value && value.length > 0
+
     return (
       <div
         {...css(
@@ -212,31 +214,40 @@ class DateInput extends React.PureComponent {
           withFang && openDirection === OPEN_UP && styles.DateInput__openUp,
         )}
       >
-        <input
-          {...css(
-            styles.DateInput_input,
-            small && styles.DateInput_input__small,
-            regular && styles.DateInput_input__regular,
-            readOnly && styles.DateInput_input__readOnly,
-            focused && styles.DateInput_input__focused,
-            disabled && styles.DateInput_input__disabled,
-          )}
-          aria-label={ariaLabel === undefined ? placeholder : ariaLabel}
-          type="text"
-          id={id}
-          name={id}
-          ref={this.setInputRef}
-          value={value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          onFocus={onFocus}
-          placeholder={placeholder}
-          autoComplete="off"
-          disabled={disabled}
-          readOnly={typeof readOnly === 'boolean' ? readOnly : isTouch}
-          required={required}
-          aria-describedby={screenReaderMessage && screenReaderMessageId}
-        />
+        <label>
+          <input
+            {...css(
+              styles.DateInput_input,
+              small && styles.DateInput_input__small,
+              regular && styles.DateInput_input__regular,
+              readOnly && styles.DateInput_input__readOnly,
+              focused && styles.DateInput_input__focused,
+              disabled && styles.DateInput_input__disabled,
+              withValue && styles.DateInput__withValue
+            )}
+            aria-label={ariaLabel === undefined ? placeholder : ariaLabel}
+            type="text"
+            id={id}
+            name={id}
+            ref={this.setInputRef}
+            value={value}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            onFocus={onFocus}
+            placeholder={placeholder}
+            autoComplete="off"
+            disabled={disabled}
+            readOnly={typeof readOnly === 'boolean' ? readOnly : isTouch}
+            required={required}
+            aria-describedby={screenReaderMessage && screenReaderMessageId}
+          />
+            <span {...css(
+              styles.Placeholder,
+              withValue && styles.Placeholder__withValue
+            )}>
+              {placeholder}
+            </span>
+          </label>
 
         {withFang && (
           <svg
@@ -281,6 +292,22 @@ export default withStyles(({
     border, color, sizing, spacing, font, zIndex,
   },
 }) => ({
+  Placeholder: {
+    position: 'absolute',
+    top: '50%',
+    left: '12px',
+    display: 'inline-block',
+    opacity: 0,
+    transition: 'top 0.4s ease',
+    transform: 'translate(0, -50%)'
+  },
+  
+  Placeholder__withValue: {
+    top: '12px',
+    color: '#959899',
+    opacity: 1
+  },
+
   DateInput: {
     margin: 0,
     padding: spacing.inputPadding,
@@ -289,6 +316,10 @@ export default withStyles(({
     display: 'inline-block',
     width: sizing.inputWidth,
     verticalAlign: 'middle',
+  },
+  
+  DateInput__withValue: {
+    paddingTop: '20px !important'
   },
 
   DateInput__small: {
