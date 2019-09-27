@@ -1,6 +1,6 @@
 {
   "name": "react-dates-floatinglabel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A datepicker based on airbnb/react-dates with a floating label",
   "main": "index.js",
   "scripts": {

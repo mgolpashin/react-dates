@@ -353,6 +353,9 @@ export default withStyles(({
     borderBottom: border.input.borderBottom,
     borderLeft: noflip(border.input.borderLeft),
     borderRadius: border.input.borderRadius,
+    '::placeholder': {
+      color: 'black'
+    }
   },
 
   DateInput_input__small: {
